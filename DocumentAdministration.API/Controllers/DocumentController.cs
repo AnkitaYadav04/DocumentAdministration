@@ -12,11 +12,9 @@ namespace DocumentAdministration.API.Controllers
     [ApiController]
     public class DocumentsController : ControllerBase
     {
-        private readonly ILogger<DocumentsController> _logger;
         private readonly IDocumentLogic _documentLogic;
-        public DocumentsController(ILogger<DocumentsController> logger, IDocumentLogic documentLogic)
+        public DocumentsController(IDocumentLogic documentLogic)
         {
-            _logger = logger;
             _documentLogic = documentLogic;
         }
 

@@ -1,4 +1,5 @@
 ﻿using DocumentAdministration.API.Core.Interfaces.Logic;
+using DocumentAdministration.API.Models;
 using DocumentAdministration.API.Models.Request;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,9 +22,10 @@ namespace DocumentAdministration.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}",Name = "GetKeywordDetails")]
-        public async Task<IActionResult> GetKeywordDetails(Guid id )
+        public async Task<ActionResult<KeywordDetailViewModel>> GetKeywordDetails(Guid id )
         {
             var response = await _KeywordLogic.GetKeywordDetail(id);
+            if (response == null) return NotFound();
 
             return Ok(response);
         }

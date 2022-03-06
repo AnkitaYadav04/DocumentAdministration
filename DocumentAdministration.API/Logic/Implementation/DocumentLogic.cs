@@ -13,11 +13,9 @@ namespace DocumentAdministration.API.Logic.Implementation
     public class DocumentLogic : IDocumentLogic
     {
         private readonly IDocumentRepository _documentRepository;
-        private readonly IMapper _mapper;
-        public DocumentLogic(IDocumentRepository documentRepository, IMapper mapper)
+        public DocumentLogic(IDocumentRepository documentRepository)
         {
             _documentRepository = documentRepository;
-            _mapper = mapper;
         }
 
         public async Task<IEnumerable<DocumentViewModel>> GetDocumentDetailsAsync(string filterKeyword = null)
