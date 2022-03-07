@@ -21,7 +21,7 @@ namespace DocumentAdministration.API.Test.ControllerTest
         {
             // Arrange
             var mockRepo = new Mock<IDocumentLogic>();
-            mockRepo.Setup(logic => logic.GetDocumentDetailsAsync(It.IsAny<string>()))
+            mockRepo.Setup(logic => logic.GetDocumentsDetailsAsync(It.IsAny<string>()))
                 .ReturnsAsync(new List<DocumentViewModel>());
             var controller = new DocumentsController(mockRepo.Object);
 
@@ -67,7 +67,7 @@ namespace DocumentAdministration.API.Test.ControllerTest
 
             // Arrange
             var mockRepo = new Mock<IDocumentLogic>();
-            mockRepo.Setup(logic => logic.GetDocumentDetailsAsync(It.IsAny<string>()))
+            mockRepo.Setup(logic => logic.GetDocumentsDetailsAsync(It.IsAny<string>()))
                 .ReturnsAsync(mockDocumentList);
             var controller = new DocumentsController(mockRepo.Object);
 

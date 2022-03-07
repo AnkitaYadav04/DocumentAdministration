@@ -27,7 +27,7 @@ namespace DocumentAdministration.API.Test.LogicTest
             var logic = new DocumentLogic(mockRepo.Object);
 
             // Act
-            var result = await logic.GetDocumentDetailsAsync(It.IsAny<string>());
+            var result = await logic.GetDocumentsDetailsAsync(It.IsAny<string>());
 
             // Assert
             Assert.Empty(result);
@@ -64,7 +64,7 @@ namespace DocumentAdministration.API.Test.LogicTest
             var logic = new DocumentLogic(mockRepo.Object);
 
             // Act
-            var result = await logic.GetDocumentDetailsAsync(It.IsAny<string>());
+            var result = await logic.GetDocumentsDetailsAsync(It.IsAny<string>());
 
             // Assert
             Assert.NotNull(result);

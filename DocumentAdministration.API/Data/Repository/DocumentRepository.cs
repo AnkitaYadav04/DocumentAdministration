@@ -24,6 +24,7 @@ namespace DocumentAdministration.API.Data.Repository
                          join keywordDetail in _dbContext.DocumentKeywordDetails on document.DocumentId equals keywordDetail.DocumentId into Details
                          from keywordDetails in Details.DefaultIfEmpty()
                          where (string.IsNullOrWhiteSpace(filterKeyword) || keywordDetails.Keyword.Contains(filterKeyword.Trim().ToUpperInvariant()))
+                         orderby document.Name
                          select 
                          new DocumentKeywordDetailsDTO
                          {
@@ -35,6 +36,26 @@ namespace DocumentAdministration.API.Data.Repository
                          }).ToListAsync();
 
             return documentKeywordDetails;  
+        }
+
+        public async Task<List<DocumentKeywordDetailsDTO>> GetDocumentKeywordDetails(Guid documentId)
+        {
+            var documentKeywordDetails = await(from document in _dbContext.Documents
+                                               join keywordDetail in _dbContext.DocumentKeywordDetails on document.DocumentId equals keywordDetail.DocumentId into Details
+                                               from keywordDetails in Details.DefaultIfEmpty()
+                                               where document.DocumentId == documentId
+                                               orderby document.Name
+                                               select
+                                               new DocumentKeywordDetailsDTO
+                                               {
+                                                   DocumentId = document.DocumentId,
+                                                   KeywordId = keywordDetails.KeywordId,
+                                                   KeywordText = keywordDetails.Keyword,
+                                                   Name = document.Name,
+
+                                               }).ToListAsync();
+
+            return documentKeywordDetails;
         }
     }
 }
