@@ -1,3 +1,4 @@
+using DocumentAdministration.API.Core.Extensions;
 using DocumentAdministration.API.Core.Interfaces.Database;
 using DocumentAdministration.API.Core.Interfaces.Logic;
 using DocumentAdministration.API.Data;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 
 namespace DocumentAdministration.API
@@ -28,6 +30,8 @@ namespace DocumentAdministration.API
             services.AddDbContext<DocumentAdministrationDbContext>(options =>
              options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddSwaggerGen();
+
+
             services.AddCors(option =>
             {
 
@@ -64,10 +68,16 @@ namespace DocumentAdministration.API
             app.UseExceptionHandler("/error");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             app.UseRouting();
+
             app.UseAuthorization();
             app.UseCors();
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Document Administration API V1");

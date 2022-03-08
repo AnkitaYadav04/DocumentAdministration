@@ -68,7 +68,7 @@ namespace DocumentAdministration.API.Test.LogicTest
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count());
+            Assert.Single(result);
             Assert.Equal(new Guid("6be0839e-78fb-4488-ba8a-243d0915843c"), result.FirstOrDefault().DocumentId);
             Assert.Equal(2, result.FirstOrDefault().Keywords.Count);
 
