@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="KeywordAlreadyExist" xml:space="preserve">
-    <value>Keywords details already exist for this document</value>
+    <value>Same Keywords details already exist for this document</value>
   </data>
   <data name="RecordNotFound" xml:space="preserve">
     <value>Record Not found</value>

@@ -13,14 +13,7 @@ namespace DocumentAdministration.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<DocumentKeywordDetail>()
-            .HasKey(dc => new { dc.DocumentId });
-
-            modelBuilder.Entity<DocumentKeywordDetail>()
-                .HasOne(bc => bc.Document)
-                .WithMany(b => b.DocumentKeywordDetails)
-                .HasForeignKey(bc => bc.DocumentId);
-
+           
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -61,7 +61,7 @@ namespace DocumentAdministration.API {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keywords details already exist for this document.
+        ///   Looks up a localized string similar to Same Keywords details already exist for this document.
         /// </summary>
         public static string KeywordAlreadyExist {
             get {

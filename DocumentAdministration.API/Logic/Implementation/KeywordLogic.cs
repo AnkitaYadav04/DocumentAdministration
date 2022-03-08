@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
+using DocumentAdministration.API.Core.Exceptions;
 using DocumentAdministration.API.Core.Interfaces.Database;
 using DocumentAdministration.API.Core.Interfaces.Logic;
 using DocumentAdministration.API.Data.Entity;
 using DocumentAdministration.API.Models;
 using DocumentAdministration.API.Models.Request;
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace DocumentAdministration.API.Logic.Implementation
@@ -33,7 +33,7 @@ namespace DocumentAdministration.API.Logic.Implementation
         {
             var keywordData = await _keywordDetailsRepository.GetDocumentKeywordDetailsById(request.DocumentId, request.Keyword);
             if (keywordData != null)
-                throw new ValidationException(ErrorMessage.KeywordAlreadyExist);
+                throw new ValidationException(System.Net.HttpStatusCode.BadRequest, ErrorMessage.KeywordAlreadyExist);
 
             var keywordDetails = new DocumentKeywordDetail
             {
@@ -49,7 +49,7 @@ namespace DocumentAdministration.API.Logic.Implementation
         {
             var keywordData = await _keywordDetailsRepository.GetDocumentKeywordDetailsById(keywordId);
             if (keywordData == null)
-                throw new ValidationException(ErrorMessage.RecordNotFound);
+                throw new ValidationException(System.Net.HttpStatusCode.BadRequest, ErrorMessage.RecordNotFound);
 
             await _keywordDetailsRepository.DeleteKeywordDetails(keywordData);
         }
@@ -58,7 +58,7 @@ namespace DocumentAdministration.API.Logic.Implementation
         {
             var keywordData = await _keywordDetailsRepository.GetDocumentKeywordDetailsById(keywordId);
             if (keywordData == null)
-                throw new ValidationException(ErrorMessage.RecordNotFound);
+                throw new ValidationException(System.Net.HttpStatusCode.BadRequest, ErrorMessage.RecordNotFound);
 
             keywordData.Keyword = keyword;
 
